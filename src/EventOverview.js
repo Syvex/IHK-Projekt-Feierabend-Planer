@@ -2,11 +2,13 @@ import React, { useCallback, useState } from 'react';
 import './style.css';
 import * as mockData from './mockData.js';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import EventDeleteDialog from './DeleteDialog';
 
 function EventList() {
   const { mockUsers } = mockData;
   const [events, setEvents] = useState(mockData.mockEvents);
   const [attendees, setAttendees] = useState(mockData.mockAttendees);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
   function getUserName(userId) {
     const user = mockUsers.find((u) => u.userId === userId);
@@ -71,8 +73,14 @@ function EventList() {
           </div>
           <div className="event-buttons">
             <FaEdit size={24} />
-            <FaTrashAlt size={24} onClick={() => handleDeleteEvent(event)} />
+            <FaTrashAlt size={24} onClick={() => setOpenDeleteDialog(true)} />
           </div>
+          <EventDeleteDialog
+            event={event}
+            onDelete={handleDeleteEvent}
+            openDialog={openDeleteDialog}
+            setOpenDialog={setOpenDeleteDialog}
+          />
         </div>
       );
     });
@@ -81,7 +89,6 @@ function EventList() {
   return (
     <div className="event-list">
       {renderEvents()}
-
       <div className="add-event-button">Add Event</div>
     </div>
   );
