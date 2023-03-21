@@ -7,7 +7,6 @@ function EventDeleteDialog({ event, onDelete, openDialog, setOpenDialog }) {
     setOpenDialog(false);
   };
 
-  console.log('open');
   return (
     <>
       {openDialog && (

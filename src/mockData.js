@@ -98,6 +98,7 @@ export const mockEvents = [
     title: 'Raidnight',
     dateTime: '2023-03-21T19:30',
     description: 'Fun gaming night with the boys.',
+    attendees: [1, 2],
   },
   {
     eventId: 2,
@@ -105,6 +106,7 @@ export const mockEvents = [
     title: 'Movie Night',
     dateTime: '2023-04-10T20:00',
     description: 'Watching latest releases in cinema.',
+    attendees: [2, 3],
   },
   {
     eventId: 3,
@@ -112,6 +114,7 @@ export const mockEvents = [
     title: 'Hiking Trip',
     dateTime: '2023-05-15T08:00',
     description: 'Exploring scenic mountain trails.',
+    attendees: [3, 4],
   },
   {
     eventId: 4,
@@ -119,53 +122,6 @@ export const mockEvents = [
     title: 'Board Game Night',
     dateTime: '2023-06-02T18:00',
     description: 'Playing classic and modern board games.',
-  },
-];
-
-export const mockAttendees = [
-  {
-    attendeeId: 1,
-    eventId: 1,
-    userId: 1,
-  },
-  {
-    attendeeId: 2,
-    eventId: 1,
-    userId: 2,
-  },
-  {
-    attendeeId: 3,
-    eventId: 2,
-    userId: 2,
-  },
-  {
-    attendeeId: 4,
-    eventId: 2,
-    userId: 3,
-  },
-  {
-    attendeeId: 5,
-    eventId: 3,
-    userId: 3,
-  },
-  {
-    attendeeId: 6,
-    eventId: 3,
-    userId: 4,
-  },
-  {
-    attendeeId: 7,
-    eventId: 4,
-    userId: 1,
-  },
-  {
-    attendeeId: 8,
-    eventId: 4,
-    userId: 3,
-  },
-  {
-    attendeeId: 9,
-    eventId: 4,
-    userId: 5,
+    attendees: [1, 3, 5],
   },
 ];

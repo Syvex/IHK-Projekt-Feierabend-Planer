@@ -3,62 +3,28 @@ import './style.css';
 import * as mockData from './mockData.js';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import EventDeleteDialog from './DeleteDialog';
+import { getUserName } from './helpers';
 
-function EventList() {
-  const { mockUsers } = mockData;
+function EventList({ setCurrentEventId, setShowDetails }) {
   const [events, setEvents] = useState(mockData.mockEvents);
-  const [attendees, setAttendees] = useState(mockData.mockAttendees);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [eventToDelete, setEventToDelete] = useState(null);
 
-  function getUserName(userId) {
-    const user = mockUsers.find((u) => u.userId === userId);
-    if (user) {
-      return `${user.firstName} ${user.lastName}`;
-    } else {
-      console.error(`User with userId ${userId} not found in mockUsers`);
-      return '';
-    }
-  }
-
-  const handleDeleteEvent = useCallback(
-    (eventToDelete) => {
-      // Find the index of the event to delete in the events array
-      const eventIndex = events.findIndex(
+  const handleDeleteEvent = useCallback(() => {
+    setEvents((prevEvents) => {
+      const index = prevEvents.findIndex(
         (event) => event.eventId === eventToDelete.eventId
       );
-      if (eventIndex === -1) {
-        console.error(`Event ${eventToDelete.eventId} not found in events`);
-        return;
+      if (index !== -1) {
+        const updatedEvents = [...prevEvents];
+        updatedEvents.splice(index, 1);
+        return updatedEvents;
       }
-
-      // Remove the event from the events array
-      const deletedEvent = events[eventIndex];
-      const updatedEvents = [...events];
-      updatedEvents.splice(eventIndex, 1);
-      setEvents(updatedEvents);
-
-      // Remove the attendees for the deleted event from the attendees array
-      const deletedAttendees = attendees.filter(
-        (attendee) => attendee.eventId === eventToDelete.eventId
-      );
-      deletedAttendees.forEach((attendee) => {
-        const attendeeIndex = attendees.findIndex(
-          (a) => a.attendeeId === attendee.attendeeId
-        );
-        if (attendeeIndex !== -1) {
-          const updatedAttendees = [...attendees];
-          updatedAttendees.splice(attendeeIndex, 1);
-          setAttendees(updatedAttendees);
-        }
-      });
-
-      console.log(
-        `Deleted event ${deletedEvent.eventId} and ${deletedAttendees.length} attendees.`,
-        updatedEvents
-      );
-    },
-    [events, attendees]
-  );
+      return prevEvents;
+    });
+    setEventToDelete(null);
+    setOpenDeleteDialog(false);
+  }, [eventToDelete]);
 
   const renderEvents = useCallback(() => {
     return events.map((event) => {
@@ -72,11 +38,24 @@ function EventList() {
             Created by: {getUserName(event.creatorId)}
           </div>
           <div className="event-buttons">
-            <FaEdit size={24} />
-            <FaTrashAlt size={24} onClick={() => setOpenDeleteDialog(true)} />
+            <FaEdit
+              size={24}
+              onClick={(e) => {
+                e.preventDefault(),
+                  setCurrentEventId(event.eventId),
+                  setShowDetails(true);
+              }}
+            />
+            <FaTrashAlt
+              size={24}
+              onClick={() => {
+                setEventToDelete(event);
+                setOpenDeleteDialog(true);
+              }}
+            />
           </div>
           <EventDeleteDialog
-            event={event}
+            event={eventToDelete}
             onDelete={handleDeleteEvent}
             openDialog={openDeleteDialog}
             setOpenDialog={setOpenDeleteDialog}
@@ -84,12 +63,20 @@ function EventList() {
         </div>
       );
     });
-  });
+  }, [
+    events,
+    setCurrentEventId,
+    setShowDetails,
+    eventToDelete,
+    openDeleteDialog,
+  ]);
 
   return (
     <div className="event-list">
       {renderEvents()}
-      <div className="add-event-button">Add Event</div>
+      <div className="add-event-button" onClick={() => setShowDetails(true)}>
+        Add Event
+      </div>
     </div>
   );
 }
