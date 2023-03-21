@@ -1,10 +1,22 @@
 import React, { useCallback, useState } from 'react';
 import './style.css';
 import * as mockData from './mockData.js';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function EventList() {
+  const { mockUsers } = mockData;
   const [events, setEvents] = useState(mockData.mockEvents);
   const [attendees, setAttendees] = useState(mockData.mockAttendees);
+
+  function getUserName(userId) {
+    const user = mockUsers.find((u) => u.userId === userId);
+    if (user) {
+      return `${user.firstName} ${user.lastName}`;
+    } else {
+      console.error(`User with userId ${userId} not found in mockUsers`);
+      return '';
+    }
+  }
 
   const handleDeleteEvent = useCallback(
     (eventToDelete) => {
@@ -55,16 +67,11 @@ function EventList() {
           </div>
           <div className="event-title">{event.title}</div>
           <div className="event-creator">
-            Created by: User {event.creatorId}
+            Created by: {getUserName(event.creatorId)}
           </div>
           <div className="event-buttons">
-            <div className="event-button edit-button">Bearbeiten</div>
-            <div
-              className="event-button delete-button"
-              onClick={() => handleDeleteEvent(event)}
-            >
-              Löschen
-            </div>
+            <FaEdit size={24} />
+            <FaTrashAlt size={24} onClick={() => handleDeleteEvent(event)} />
           </div>
         </div>
       );
@@ -74,6 +81,7 @@ function EventList() {
   return (
     <div className="event-list">
       {renderEvents()}
+
       <div className="add-event-button">Add Event</div>
     </div>
   );
