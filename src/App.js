@@ -5,7 +5,7 @@ import EventDetails from './EventDetails.js';
 
 export default function App() {
   const [showDetails, setShowDetails] = useState(false);
-  const [currentEventId, setCurrentEventId] = useState();
+  const [currentEventId, setCurrentEventId] = useState(null);
 
   return (
     <div>
