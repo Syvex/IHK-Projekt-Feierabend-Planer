@@ -1,33 +1,28 @@
 import React, { useCallback, useState } from 'react';
 import './style.css';
-import * as mockData from './mockData.js';
+import { mockEvents } from './mockData.js';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import EventDeleteDialog from './DeleteDialog';
 import { getUserName, getDateAndTime } from './helpers';
 
 function EventList({ setCurrentEventId, setShowDetails }) {
-  const [events, setEvents] = useState(mockData.mockEvents);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
 
-  const handleDeleteEvent = useCallback(() => {
-    setEvents((prevEvents) => {
-      const index = prevEvents.findIndex(
-        (event) => event.eventId === eventToDelete.eventId
-      );
-      if (index !== -1) {
-        const updatedEvents = [...prevEvents];
-        updatedEvents.splice(index, 1);
-        return updatedEvents;
-      }
-      return prevEvents;
-    });
+  const handleDeleteEvent = () => {
+    const index = mockEvents.findIndex(
+      (event) => event.eventId === eventToDelete.eventId
+    );
+    if (index !== -1) {
+      mockEvents.splice(index, 1);
+    }
+
     setEventToDelete(null);
     setOpenDeleteDialog(false);
-  }, [eventToDelete]);
+  };
 
   const renderEvents = useCallback(() => {
-    return events.map((event) => {
+    return mockEvents.map((event) => {
       return (
         <div key={event.eventId} className="event-outer">
           <div className="event-inner">
@@ -76,7 +71,7 @@ function EventList({ setCurrentEventId, setShowDetails }) {
       );
     });
   }, [
-    events,
+    mockEvents,
     setCurrentEventId,
     setShowDetails,
     eventToDelete,
