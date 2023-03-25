@@ -1,5 +1,10 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 /* Styles for the event overview container */
 .event-list {
+  position: relative;
   box-sizing: border-box;
   width: 800px;
   height: 800px;
@@ -19,12 +24,23 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-  padding: 10px;
-  background-color: blue;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background-color: rgb(103, 228, 103);
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-event-button:hover {
+  background-color: rgb(0, 255, 0);
+}
+
+.add-event-button:active {
+  transform: translateY(1px);
 }
 
 /* Styles for the event container */
