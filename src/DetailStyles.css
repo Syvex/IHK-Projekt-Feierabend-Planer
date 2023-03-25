@@ -62,10 +62,6 @@
   border: none;
 }
 
-.attendee-select div[class$='container']:focus {
-  outline: none;
-}
-
 div[class$='IndicatorsContainer'] {
   display: none;
 }
@@ -85,6 +81,7 @@ div[class$='IndicatorsContainer'] {
   width: 30px;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .attendee-select {
@@ -93,10 +90,6 @@ div[class$='IndicatorsContainer'] {
   border: '1px solid black';
   border-radius: '5px';
   text-align: 'center';
-}
-
-.attendee-select:hover {
-  cursor: pointer;
 }
 
 .button-wrap {
@@ -125,4 +118,8 @@ div[class$='IndicatorsContainer'] {
 
 .submit-btn:hover {
   background-color: rgb(0, 255, 0);
+}
+
+.error-msg {
+  color: red;
 }

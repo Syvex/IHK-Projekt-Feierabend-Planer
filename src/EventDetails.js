@@ -76,7 +76,9 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
       !formData.dateTime ||
       formData.attendees.length === 0
     ) {
-      setErrorMessage('Please fill out all required fields.');
+      setErrorMessage(
+        'Bitte füllen Sie alle Notwendigen Felder aus. Nur Beschreibungen sind Optional.'
+      );
       return;
     }
 
@@ -191,71 +193,12 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
               </button>
             </div>
           </div>
+          <span className="error-msg">
+            {errorMessage && <p>{errorMessage}</p>}
+          </span>
         </form>
       </div>
     </>
-    /*
-    <form className="event-form" onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Date and Time:
-        <DateTimePicker
-          onChange={handleDateTimeChange}
-          value={formData.dateTime}
-        />
-      </label>
-      <br />
-      <label>
-        Description:
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <div className="attendees-container ">
-        <label>
-          Attendees:
-          <Select
-            isMulti
-            name="attendees"
-            options={mockUsers
-              .filter(
-                (user) =>
-                  !formData.attendees.find(
-                    (attendee) => attendee.userId === user.userId
-                  )
-              )
-              .map((user) => ({
-                value: user.userId,
-                label: getUserName(user.userId),
-              }))}
-            value={formData.attendees.map((attendee) => ({
-              value: attendee.userId,
-              label: getUserName(attendee.userId),
-            }))}
-            onChange={handleAttendeesChange}
-          />
-        </label>
-      </div>
-      <br />
-      <button type="submit">{eventId ? 'Update' : 'Create'} Event</button>
-      <button type="button" onClick={() => handleCancel()}>
-        Cancel
-      </button>
-      {errorMessage && <p>{errorMessage}</p>}
-    </form>
-    */
   );
 }
 
