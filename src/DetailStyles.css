@@ -1,78 +1,128 @@
+.add-event-container {
+  margin-top: 15%;
+}
+
 .event-form {
-  display: flex;
-  flex-direction: column;
-  width: 800px;
+  display: grid;
+  grid-template-columns: auto 300px;
+  /* grid-template-rows: 80px auto; */
 }
 
-.input-container {
-  display: flex;
-  align-items: center;
-  margin: 16px 0;
+.details-container {
+  grid-column-start: 1;
+  display: inline-block;
+  text-align: center;
+  padding: 12px;
 }
 
-.input-container > label {
-  margin-right: 16px;
-}
-
-.title-input,
-.datetime-input,
-.attendees-select,
-.description-input {
-  flex: 1;
-  height: 32px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  padding: 8px;
+.details-container input {
+  width: 100%;
+  border: none;
+  text-align: center;
+  line-height: 20px;
   font-size: 16px;
 }
 
-.title-input {
-  width: 400px;
+.react-datetime-picker__wrapper {
+  border: none;
 }
 
-.datetime-input {
-  width: 400px;
-}
-
-.attendees-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 200px;
-  height: 200px;
-  overflow-y: scroll;
-}
-
-.attendees-select {
-  width: 100%;
-}
-
-.description-input {
-  height: 200px;
+.details-container textarea {
+  margin-top: 0.5rem;
+  width: 95%;
+  padding: 0.5rem;
+  height: 350px;
+  text-align: left;
   resize: none;
 }
 
-.button-container {
+.side-bar {
+  grid-column-start: 2;
+  text-align: center;
+}
+
+.attendees-container {
+  border: 1px solid black;
+  margin: 10px 2px;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
+  flex-direction: column;
+  min-height: 500px;
 }
 
-button {
-  height: 40px;
-  padding: 0 16px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
+.attendees-container div[class$='multiValue'] {
+  width: 100%;
+  height: 30px;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.attendee-select div[class$='control'] {
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: none;
 }
 
-button:hover {
-  background-color: #eee;
+.attendee-select div[class$='container']:focus {
+  outline: none;
 }
 
-button:active {
-  background-color: #ccc;
-  color: #fff;
+div[class$='IndicatorsContainer'] {
+  display: none;
+}
+
+.attendees-container div[class$='MultiValueGeneric'] {
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+.attendees-container div[class$='MultiValueRemove'] {
+  display: flex;
+  justify-content: center;
+  float: right;
+  width: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.attendee-select {
+  font-size: '1em';
+  color: 'black';
+  border: '1px solid black';
+  border-radius: '5px';
+  text-align: 'center';
+}
+
+.attendee-select:hover {
+  cursor: pointer;
+}
+
+.button-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button-wrap button {
+  margin: 3px 5px;
+  padding: 3px 10px;
+  border-radius: 5px;
+}
+
+.cancel-btn {
+  background-color: #f7524f;
+}
+
+.cancel-btn:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.submit-btn {
+  background-color: palegreen;
+}
+
+.submit-btn:hover {
+  background-color: rgb(0, 255, 0);
 }

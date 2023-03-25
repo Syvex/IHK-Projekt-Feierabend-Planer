@@ -117,6 +117,84 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
   };
 
   return (
+    <>
+      <h2>Event Details</h2>
+      <div className="add-event-container">
+        <form className="event-form" onSubmit={handleSubmit}>
+          <div className="details-container">
+            <input
+              id="title"
+              type="text"
+              name="title"
+              placeholder="Event Titel"
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+            />
+            <hr />
+            <DateTimePicker
+              onChange={handleDateTimeChange}
+              value={formData.dateTime}
+              showTimeSelect={true}
+            />
+            <hr />
+            <br />
+            <label for="description">Beschreibung:</label>
+            <br />
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              value={formData.description}
+              rows="12"
+              cols="50"
+            />
+          </div>
+          <div className="side-bar">
+            <label>Teilnehmer</label>
+            <div className="attendees-container">
+              <Select
+                className="attendee-select"
+                isMulti
+                name="attendees"
+                options={mockUsers
+                  .filter(
+                    (user) =>
+                      !formData.attendees.find(
+                        (attendee) => attendee.userId === user.userId
+                      )
+                  )
+                  .map((user) => ({
+                    value: user.userId,
+                    label: getUserName(user.userId),
+                  }))}
+                value={formData.attendees.map((attendee) => ({
+                  value: attendee.userId,
+                  label: getUserName(attendee.userId),
+                }))}
+                onChange={handleAttendeesChange}
+                placeholder={'+ Hinzufugen'}
+              />
+            </div>
+            <div className="button-wrap">
+              <button className="submit-btn" type="submit">
+                {eventId ? 'Update' : 'Create'} Event
+              </button>
+              <button
+                className="cancel-btn"
+                onClick={() => handleCancel()}
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+    /*
     <form className="event-form" onSubmit={handleSubmit}>
       <label>
         Title:
@@ -177,6 +255,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
       </button>
       {errorMessage && <p>{errorMessage}</p>}
     </form>
+    */
   );
 }
 
