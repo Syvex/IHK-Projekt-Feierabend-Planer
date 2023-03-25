@@ -3,7 +3,7 @@ import './style.css';
 import * as mockData from './mockData.js';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import EventDeleteDialog from './DeleteDialog';
-import { getUserName } from './helpers';
+import { getUserName, getDateAndTime } from './helpers';
 
 function EventList({ setCurrentEventId, setShowDetails }) {
   const [events, setEvents] = useState(mockData.mockEvents);
@@ -29,25 +29,37 @@ function EventList({ setCurrentEventId, setShowDetails }) {
   const renderEvents = useCallback(() => {
     return events.map((event) => {
       return (
-        <div key={event.eventId} className="event">
-          <div className="event-time">
-            {new Date(event.dateTime).toLocaleString()}
-          </div>
-          <div className="event-title">{event.title}</div>
-          <div className="event-creator">
-            Created by: {getUserName(event.creatorId)}
+        <div key={event.eventId} className="event-outer">
+          <div className="event-inner">
+            <div className="event-date-time">
+              <span>{getDateAndTime(event.dateTime)[0]}</span>
+              <span>{getDateAndTime(event.dateTime)[1]}</span>
+            </div>
+            <div className="event-title">{event.title}</div>
+            <div className="event-creator">
+              Creator:
+              <br />
+              {getUserName(event.creatorId)}
+            </div>
           </div>
           <div className="event-buttons">
             <FaEdit
-              size={24}
+              id="edit"
+              size={30}
+              data-tip="Bearbeiten"
+              data-for="editTip"
               onClick={(e) => {
                 e.preventDefault(),
                   setCurrentEventId(event.eventId),
                   setShowDetails(true);
               }}
             />
+
             <FaTrashAlt
-              size={24}
+              id="delete"
+              size={30}
+              data-tip="Löschen"
+              data-for="deleteTip"
               onClick={() => {
                 setEventToDelete(event);
                 setOpenDeleteDialog(true);
@@ -73,6 +85,7 @@ function EventList({ setCurrentEventId, setShowDetails }) {
 
   return (
     <div className="event-list">
+      <h2>Feierabend-Planer</h2>
       {renderEvents()}
       <div className="add-event-button" onClick={() => setShowDetails(true)}>
         Add Event
