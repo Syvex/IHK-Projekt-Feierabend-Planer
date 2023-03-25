@@ -3,7 +3,7 @@ body {
 }
 
 /* Styles for the event overview container */
-.event-list {
+.main-wrap {
   position: relative;
   box-sizing: border-box;
   width: 800px;

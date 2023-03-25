@@ -3,6 +3,7 @@ import DateTimePicker from 'react-datetime-picker';
 import Select from 'react-select';
 import { mockEvents, mockUsers } from './mockData';
 import { getUserName } from './helpers';
+import './DetailStyles.css';
 
 function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
   // Set up state to hold the form data.
@@ -116,7 +117,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="event-form" onSubmit={handleSubmit}>
       <label>
         Title:
         <input
@@ -144,29 +145,31 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
         />
       </label>
       <br />
-      <label>
-        Attendees:
-        <Select
-          isMulti
-          name="attendees"
-          options={mockUsers
-            .filter(
-              (user) =>
-                !formData.attendees.find(
-                  (attendee) => attendee.userId === user.userId
-                )
-            )
-            .map((user) => ({
-              value: user.userId,
-              label: getUserName(user.userId),
+      <div className="attendees-container ">
+        <label>
+          Attendees:
+          <Select
+            isMulti
+            name="attendees"
+            options={mockUsers
+              .filter(
+                (user) =>
+                  !formData.attendees.find(
+                    (attendee) => attendee.userId === user.userId
+                  )
+              )
+              .map((user) => ({
+                value: user.userId,
+                label: getUserName(user.userId),
+              }))}
+            value={formData.attendees.map((attendee) => ({
+              value: attendee.userId,
+              label: getUserName(attendee.userId),
             }))}
-          value={formData.attendees.map((attendee) => ({
-            value: attendee.userId,
-            label: getUserName(attendee.userId),
-          }))}
-          onChange={handleAttendeesChange}
-        />
-      </label>
+            onChange={handleAttendeesChange}
+          />
+        </label>
+      </div>
       <br />
       <button type="submit">{eventId ? 'Update' : 'Create'} Event</button>
       <button type="button" onClick={() => handleCancel()}>

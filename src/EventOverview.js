@@ -79,13 +79,13 @@ function EventList({ setCurrentEventId, setShowDetails }) {
   ]);
 
   return (
-    <div className="event-list">
+    <>
       <h2>Feierabend-Planer</h2>
       {renderEvents()}
       <div className="add-event-button" onClick={() => setShowDetails(true)}>
         Add Event
       </div>
-    </div>
+    </>
   );
 }
 
