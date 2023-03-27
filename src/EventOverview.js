@@ -32,7 +32,7 @@ function EventList({ setCurrentEventId, setShowDetails }) {
             </div>
             <div className="event-title">{event.title}</div>
             <div className="event-creator">
-              Creator:
+              Ersteller:
               <br />
               {getUserName(event.creatorId)}
             </div>
@@ -83,7 +83,7 @@ function EventList({ setCurrentEventId, setShowDetails }) {
       <h2>Feierabend-Planer</h2>
       {renderEvents()}
       <button className="add-event-button" onClick={() => setShowDetails(true)}>
-        Add Event
+        Neues Event
       </button>
     </>
   );

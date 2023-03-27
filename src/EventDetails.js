@@ -142,7 +142,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
             />
             <hr />
             <br />
-            <label for="description">Beschreibung:</label>
+            <label htmlFor="description">Beschreibung:</label>
             <br />
             <textarea
               id="description"
@@ -182,14 +182,14 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
             </div>
             <div className="button-wrap">
               <button className="submit-btn" type="submit">
-                {eventId ? 'Update' : 'Create'} Event
+                {eventId ? 'Update Event' : 'Event erstellen'}
               </button>
               <button
                 className="cancel-btn"
                 onClick={() => handleCancel()}
                 type="button"
               >
-                Cancel
+                Abbrechen
               </button>
             </div>
           </div>

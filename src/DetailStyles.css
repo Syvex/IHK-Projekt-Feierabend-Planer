@@ -112,12 +112,12 @@ div[class$='IndicatorsContainer'] {
   background-color: rgb(255, 0, 0);
 }
 
-.submit-btn {
-  background-color: palegreen;
-}
-
 .submit-btn:hover {
   background-color: rgb(0, 255, 0);
+}
+
+.submit-btn {
+  background-color: palegreen;
 }
 
 .error-msg {
