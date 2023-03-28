@@ -31,7 +31,7 @@ button {
   position: relative;
   box-sizing: border-box;
   width: 800px;
-  height: 800px;
+  height: 600px;
   margin: 0 auto;
   overflow: auto;
   padding: 0 2rem;
@@ -139,10 +139,24 @@ button {
   color: red;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* semi-transparenter grauer Schleier */
+  z-index: 9999; /* sorgt dafür, dass das Overlay über anderen Elementen liegt */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .dialog {
   position: absolute;
   display: flex;
   flex-direction: column;
+  max-width: 350px;
   top: 25%;
   left: 50%;
   transform: translateX(-50%);

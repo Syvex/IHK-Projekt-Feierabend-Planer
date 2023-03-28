@@ -1,5 +1,5 @@
 .add-event-container {
-  margin-top: 15%;
+  margin-top: 50px;
 }
 
 .event-form {
@@ -31,7 +31,7 @@
   margin-top: 0.5rem;
   width: 95%;
   padding: 0.5rem;
-  height: 350px;
+  height: 250px;
   text-align: left;
   resize: none;
 }
@@ -46,7 +46,7 @@
   margin: 10px 2px;
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .attendees-container div[class$='multiValue'] {
@@ -122,4 +122,7 @@ div[class$='IndicatorsContainer'] {
 
 .error-msg {
   color: red;
+  position: absolute;
+  bottom: 0;
+  width: 400px;
 }
