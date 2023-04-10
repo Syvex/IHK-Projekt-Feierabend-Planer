@@ -61,12 +61,6 @@ function EventList({ setCurrentEventId, setShowDetails }) {
               }}
             />
           </div>
-          <EventDeleteDialog
-            event={eventToDelete}
-            onDelete={handleDeleteEvent}
-            openDialog={openDeleteDialog}
-            setOpenDialog={setOpenDeleteDialog}
-          />
         </div>
       );
     });
@@ -82,6 +76,12 @@ function EventList({ setCurrentEventId, setShowDetails }) {
     <>
       <h2>Feierabend-Planer</h2>
       {renderEvents()}
+      <EventDeleteDialog
+        event={eventToDelete}
+        onDelete={handleDeleteEvent}
+        openDialog={openDeleteDialog}
+        setOpenDialog={setOpenDeleteDialog}
+      />
       <button className="add-event-button" onClick={() => setShowDetails(true)}>
         Neues Event
       </button>
