@@ -67,6 +67,23 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
     setCurrentEventId(null);
   };
 
+  const findLowestAvailableEventId = (events) => {
+    let eventId = 1;
+    const sortedIds = events
+      .map((event) => event.eventId)
+      .sort((a, b) => a - b);
+
+    for (let i = 0; i < sortedIds.length; i++) {
+      if (sortedIds[i] === eventId) {
+        eventId++;
+      } else if (sortedIds[i] > eventId) {
+        break;
+      }
+    }
+
+    return eventId;
+  };
+
   // Handle form submission.
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -85,7 +102,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
     // Create a new event object with the form data.
     const newEvent = {
       // If there are other events, take the last and increment it's ID by 1
-      eventId: mockEvents[mockEvents.length - 1]?.eventId + 1 || 1,
+      eventId: findLowestAvailableEventId(mockEvents),
       creatorId: 1, // needs to be made dynamic once a real backend and login exists
       title: formData.title,
       dateTime: formData.dateTime.toISOString(),
