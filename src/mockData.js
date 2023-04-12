@@ -95,10 +95,10 @@ export const mockEvents = [
   {
     eventId: 1,
     creatorId: 1,
-    title: 'Raidnight',
+    title: 'Raid Night',
     dateTime: '2023-03-21T19:30',
-    description: 'Fun gaming night with the boys.',
-    attendees: [1, 2],
+    description: 'Fun gaming night with the group.',
+    attendees: [1, 2, 5, 7, 8],
   },
   {
     eventId: 2,
