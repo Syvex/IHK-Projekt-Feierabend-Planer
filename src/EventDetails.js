@@ -84,7 +84,8 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
 
     // Create a new event object with the form data.
     const newEvent = {
-      eventId: mockEvents.length + 1,
+      // If there are other events, take the last and increment it's ID by 1
+      eventId: mockEvents[mockEvents.length - 1]?.eventId + 1 || 1,
       creatorId: 1, // needs to be made dynamic once a real backend and login exists
       title: formData.title,
       dateTime: formData.dateTime.toISOString(),
