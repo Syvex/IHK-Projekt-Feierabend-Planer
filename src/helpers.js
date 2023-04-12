@@ -5,7 +5,7 @@ export function getUserName(userId) {
   if (user) {
     return `${user.firstName} ${user.lastName}`;
   } else {
-    console.error(`User with userId ${userId} not found in mockUsers`);
+    console.error(`User mit userId ${userId} nicht gefunden`);
     return '';
   }
 }

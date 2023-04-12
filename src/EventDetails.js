@@ -23,7 +23,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
       // Find the event with the given eventId.
       const event = mockEvents.find((e) => e.eventId === eventId);
       if (!event) {
-        setErrorMessage(`Event with ID ${eventId} not found.`);
+        setErrorMessage(`Event mit ID ${eventId} nicht gefunden.`);
         return;
       }
 
@@ -94,7 +94,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
       formData.attendees.length === 0
     ) {
       setErrorMessage(
-        'Bitte füllen Sie alle Notwendigen Felder aus. Nur Beschreibungen sind Optional.'
+        'Bitte füllen Sie alle notwendigen Felder aus. Nur Beschreibungen sind optional.'
       );
       return;
     }
@@ -114,7 +114,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
     if (eventId) {
       const eventIndex = mockEvents.findIndex((e) => e.eventId === eventId);
       if (eventIndex === -1) {
-        setErrorMessage(`Event with ID ${eventId} not found.`);
+        setErrorMessage(`Event mit ID ${eventId} nicht gefunden.`);
         return;
       }
       mockEvents[eventIndex] = newEvent;
@@ -131,14 +131,14 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
       attendees: [],
     });
     setErrorMessage('');
-    alert(`Event ${eventId ? 'updated' : 'created'} successfully!`);
+    alert(`Event wurde erfolgreich ${eventId ? 'aktualisiert' : 'erstellt'}!`);
     setShowDetails(false);
     setCurrentEventId(null);
   };
 
   return (
     <>
-      <h2>Event Details</h2>
+      <h2>Event-Details</h2>
       <div className="add-event-container">
         <form className="event-form" onSubmit={handleSubmit}>
           <div className="details-container">
@@ -195,7 +195,7 @@ function EventDetails({ eventId, setShowDetails, setCurrentEventId }) {
                   label: getUserName(attendee.userId),
                 }))}
                 onChange={handleAttendeesChange}
-                placeholder={'+ Hinzufugen'}
+                placeholder={'+ Hinzufügen'}
               />
             </div>
             <div className="button-wrap">
